@@ -65,3 +65,46 @@ cantDigitos x | x<10 = 1
 iesimoDigito::Int->Int->Int
 iesimoDigito n i | i==cantDigitos n = ultimoDig n 
                  | otherwise = iesimoDigito (sacarUltDig n) i
+
+sumatoria:: Int -> Int -> Int
+sumatoria base expo | expo == 1 = base
+                    | otherwise = base^expo + sumatoria base (expo-1)
+
+sumatoriaDoble:: Int -> Int -> Int
+sumatoriaDoble base expo | base == 1 = sumatoria base expo
+                         | otherwise = sumatoria base expo + sumatoriaDoble (base-1) (expo) 
+
+{-
+Ejercicio 16. Recordemos que un entero p > 1 es primo si y solo si no existe un entero k tal que 1 < k < p y k divida a p.
+a) Implementar menorDivisor :: Integer ->Integer que calcule el menor divisor (mayor que 1) de un natural n pasado
+como parametro.
+
+b) Implementar la funcion esPrimo :: Integer ->Bool que indica si un numero natural pasado como parametro es primo.
+
+c) Implementar la funcion sonCoprimos :: Integer ->Integer ->Bool que dados dos numeros naturales indica si no
+tienen algun divisor en comun mayor estricto que 1.
+
+d) Implementar la funcion nEsimoPrimo :: Integer ->Integer que devuelve el n-esimo primo (n ≥ 1). Recordar que el
+primer primo es el 2, el segundo es el 3, el tercero es el 5, etc
+-}
+ 
+menorDivisor::Int-> Int
+menorDivisor x = menorDivDesde 2 x
+ 
+menorDivDesde :: Int -> Int -> Int
+menorDivDesde n m | mod m n == 0 = n
+                  | otherwise = menorDivDesde (n+1) m
+
+{-posible prueba-}
+esPrimo :: Int -> Bool
+esPrimo x | menorDivisor x == x && x>= 1 = True
+          | otherwise = False
+
+sonCoprimos :: Int -> Int -> Bool 
+sonCoprimos x y | (menorDivDesde 2 x) /= (menorDivDesde 2 y) = True
+                | otherwise = False
+
+nEsimoPrimo :: Int -> Int
+nEsimoPrimo x | x==1 = 2
+              |
+
