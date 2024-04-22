@@ -104,7 +104,7 @@ sonCoprimos :: Int -> Int -> Bool
 sonCoprimos x y | (menorDivDesde 2 x) /= (menorDivDesde 2 y) = True
                 | otherwise = False
 
-nEsimoPrimo :: Int -> Int
-nEsimoPrimo x | x==1 = 2
-              |
+-- nEsimoPrimo :: Int -> Int
+-- nEsimoPrimo x | x==1 = 2
+        
 
