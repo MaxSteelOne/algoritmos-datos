@@ -209,4 +209,33 @@ esPrimo x | x==1            = False
           | menorDiv x == x = True
           | otherwise       = False
 
+auxSonCop::Int->Int->Int->Bool
+auxSonCop x y z | mod x z == 0 && mod y z == 0 = False
+                | x <= z || y <= z             = True
+                | otherwise                    = auxSonCop x y (z+1)
+
 sonCoprimos::Int->Int->Bool
+sonCoprimos x y = auxSonCop x y 2
+
+{-Ejercicio 17-}
+
+esFibo::Int->Bool
+esFibo x = auxEsFibonacci x 1
+
+auxEsFibonacci::Int->Int->Bool
+auxEsFibonacci x y | x == fibonacci y = True
+                   | x < fibonacci y  = False
+                   | otherwise        = auxEsFibonacci x (y+1)
+
+{-Ejercicio 18-}
+
+esPar::Int->Bool
+esPar x = mod x 2 == 0
+
+mayorDigitoPar::Int->Int
+mayorDigitoPar x = auxMDPar x (-1)
+
+auxMDPar::Int->Int->Int
+auxMDPar x mayorValor | x == 0                                         = mayorValor
+                      | esPar(ultimoDig x) && ultimoDig x > mayorValor = auxMDPar (sacarUltDig x) (ultimoDig x)
+                      | otherwise                                      = auxMDPar (sacarUltDig x) mayorValor
