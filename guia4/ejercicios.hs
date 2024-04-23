@@ -239,3 +239,34 @@ auxMDPar::Int->Int->Int
 auxMDPar x mayorValor | x == 0                                         = mayorValor
                       | esPar(ultimoDig x) && ultimoDig x > mayorValor = auxMDPar (sacarUltDig x) (ultimoDig x)
                       | otherwise                                      = auxMDPar (sacarUltDig x) mayorValor
+{-lo de hoy-}
+{-2.1-}
+pertenece:: (Eq t) => t -> [t] -> Bool
+pertenece _ [] = False
+pertenece n (x:xs) | n == x      = True
+                   | otherwise   = pertenece n xs
+
+{-2.4-}
+hayRepetidos:: (Eq t) => [t] -> Bool
+hayRepetidos (x:xs) | xs == [] = False
+                    | pertenece x xs = True
+                    | otherwise      = hayRepetidos xs
+
+{-2.5-}
+quitar::(Eq t) => t -> [t] -> [t]
+quitar _ [] = []
+quitar q (x:xs) | q==x = xs
+                | otherwise = x: quitar q xs
+
+{-3.3-}
+
+maximo::(Ord t) => [t] -> t
+maximo [x] = x
+maximo (x:y:xs) | x > y =   maximo (x:xs)
+                | otherwise = maximo (y:xs)
+
+
+{-3.9-}
+ordenar::(Ord t) => [t] -> [t]
+ordenar xs | xs == [] = []
+           | otherwise = ordenar( quitar (maximo xs) xs) ++ [maximo xs]
