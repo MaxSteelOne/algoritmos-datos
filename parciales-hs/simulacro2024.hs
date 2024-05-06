@@ -123,7 +123,7 @@ duoElementoApariciones elem ls = (elem, cantApariciones elem ls)
 listaDeDuplas::[String]->[(String,Int)]
 listaDeDuplas [] = [("Nadie",0)]
 listaDeDuplas (x:xs) = [duoElementoApariciones x (x:xs)]++listaDeDuplas (quitarTodos x (x:xs))
-
+ 
 mayorCantElem::[(String,Int)]->String
 mayorCantElem (x:xs)
     | xs == []               = fst x
