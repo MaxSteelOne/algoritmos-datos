@@ -1,3 +1,4 @@
+import random
 # Ej 1.1
 """def pertenecev1 (llista: list[int],elem: int)->bool:
     res= False
@@ -163,6 +164,112 @@ def aprobados (xl:list[int])->int:
     elif(promedio>=4 and promedio<7 and son_notas_aprobadas(xl)):
         return 2
     else:
-        return 3
-# 4.0
 
+        return 3
+# 4.1
+def lista_alumnos()->list[str]:
+    xl : list[str] = []
+    acc : str = ""
+    while(acc!="Fin"):
+        acc = input("Alumno: ")
+        if(acc!="Fin"):
+            xl.append(acc)
+    return xl
+
+# 4.2
+def historial_bancario()->list[tuple[str,int]]:
+    historial : list[tuple[str,int]] = []
+    accion : str = ""
+    while(accion != "X"):
+        accion=input("Accion: ")
+        if(accion=="C"):
+            deposito : int = input("$")
+            historial.append(["C",f"+{deposito}"])
+        if(accion=="E"):
+            extraccion : int = input("S")
+            historial.append(["E",F"-{extraccion}"])
+    return historial
+
+# 4.3
+
+# v1
+"""
+def siete_medios()->list[int]:
+    historial: list[int] = []
+    acc: int = 0
+    condicion: bool = True
+    while(condicion):
+        num : int = random.randint(1,12)
+        if(num!=8 and num !=9):
+            if(num<=7):
+                acc+=num
+                historial.append(num)
+            else:
+                acc+=0.5
+                historial.append(num)
+
+            if(acc>7.5):
+                return f"Perdister, te pasaste de 7.5, tu mano de cartas fue: {historial}"
+            
+            accion : str = input("Sigo: SI o NO: ")
+            if(accion=="NO"):
+                return f"Tu mano es:{historial} y tu puntaje es: {acc}"
+"""
+
+# v2
+def siete_medios()->list[int]:
+    condicion: bool = True
+    mano : list[int] = [] # type: ignore
+    acumulado: int = 0 # type: ignore
+
+    cartas : list[int] = [1,2,3,4,5,6,7,10,11,12] # type: ignore
+
+    while condicion :
+        karta = int = random.choice(cartas)
+        if(karta<=7):
+            mano.append(karta)
+            acumulado+=karta
+        else:
+            mano.append(karta)
+            acumulado+=0.5
+        
+        if(acumulado>7.5):
+            return f"Te pasaste de 7.5, tu mano quedo en {mano}"
+        elif(acumulado==7.5):
+            return f"Felicidades ganaste, tu mano fue de {mano}"
+        else:
+            accion : str = input("Sigo: SI O NO: ").upper()
+            if(accion=="NO"):
+                condicion = False
+                return f"Tu mano fue de {mano}"
+
+# 5.0
+def pertenece_a_cu (xl:list[int],xe:int)->list[bool]:
+    res : list[bool] = []
+    for i in xl:
+        res.append(pertenece_global(i,xe))
+    return res
+
+# 5.1
+def es_matriz(xl:list[list[int]])->bool:
+    long_general : int = len(xl[0])
+    long_lista   : int = len(xl)
+
+    if(long_general>0 and long_lista>0):
+        for i in xl:
+            if(long_general!=len(i)):
+                return False
+        return True
+    else:
+        return False
+
+# 5.2
+def filas_ordenadas(xl:list[list[int]])->list[bool]:
+    seq_Bol : list[bool] = []
+    for i in xl:
+        seq_Bol.append(ordenador(i))
+    return seq_Bol
+
+# 5.4
+
+    
