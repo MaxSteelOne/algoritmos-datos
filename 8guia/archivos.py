@@ -64,7 +64,3 @@ def escribir_al_final(archivo:str,frase:str)->None:
     f1 = open(archivo,"w")
     f1.write(frase)
     f1.close()
-
-zz = [1,2,3,4]
-zz.append()
-print(zz)

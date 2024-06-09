@@ -19,21 +19,16 @@ def generarNrosAzar(cantidad:int, desde:int, hasta:int)-> Pila:
 #recordar probar por recur !!!!!!!!!!!!!!!!!!!!!!!!!!
 def buscarMaximo(miPila: Pila[int])-> int:
     print(miPila.queue)
-    #
     pilaTemp = Pila()
-
     maximo: int = miPila.get()
     pilaTemp.put(maximo)
     while(not miPila.empty()):
         tope = miPila.get()
         pilaTemp.put(tope)
-
         if(tope > maximo):
             maximo = tope
-
     while(not pilaTemp.empty()):
         miPila.put(pilaTemp.get())
-    
     print(miPila.queue)
     return maximo
 
