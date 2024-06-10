@@ -82,3 +82,46 @@ def nro_pacientes_urgentes(xc:Cola[tuple[int,str,str]])->int:
     print(xc.queue)
 
     return total_pacientes_uregentes
+
+# 18
+#                           nombre dni prioridad millo
+def bancarios(xc: Cola[tuple[str,int,bool,bool]])->Cola[tuple[str,int,bool,bool]]:
+    print(xc.queue)
+    l_prioridad : list[tuple[str,int,bool,bool]] = []
+    l_preferencia : list[tuple[str,int,bool,bool]] = []
+    l_mortales : list[tuple[str,int,bool,bool]] = []
+
+    xl : list[tuple[str,int,bool,bool]] = []
+
+    while not xc.empty():
+        ticket = xc.get()
+        xl.append(ticket)
+        # chequeo si tiene prioridad
+        if ticket[2] :
+            l_prioridad.append(ticket)
+        elif ticket[3]:
+            l_preferencia.append(ticket)
+        else:
+            l_mortales.append(ticket)
+    
+    orden_atencion : list[tuple[str,int,bool,bool]] = l_prioridad + l_preferencia + l_mortales
+    res : Cola[tuple[str,int,bool,bool]] = Cola()
+
+    for ticket in orden_atencion:
+        res.put(ticket)
+    
+    for i in xl:
+        xc.put(i)
+    
+    print(xc.queue)
+
+    return res.queue
+
+cola_muchos = Cola()
+cola_muchos.put(("Martin", 20094505, True , False))
+cola_muchos.put(("Sofia" , 29808654, False, True))
+cola_muchos.put(("Maximo", 67890912, False, True))
+cola_muchos.put(("Jesus" , 44444444, True , False ))
+cola_muchos.put(("Lucas" , 55555555, False , False))
+
+print(bancarios(cola_muchos))
